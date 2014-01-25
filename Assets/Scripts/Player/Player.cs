@@ -31,15 +31,14 @@ public class Player : MonoBehaviour {
 
     void Update()
     {
-        if ((Input.inputString != ""))
+        if (Input.GetButtonDown("X Button"))
         {
-            switch (Input.inputString)
-            {
-                case "1":
+            switch (state) {
+                case UnitType.Circle:
                     state = UnitType.Cube;
                     SetActiveObject(cubeReference);
                     break;
-                case "2":
+                case UnitType.Cube:
                     state = UnitType.Circle;
                     SetActiveObject(cylinderReference);
                     break;
