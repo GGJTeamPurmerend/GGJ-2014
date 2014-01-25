@@ -90,4 +90,9 @@ public class NPC : MonoBehaviour {
         bool aggroIsFake = AIType == AIType.Friendly;
         this.GetComponent<NeutralBehaviour>().AggroToPlayer(aggroIsFake);
     }
+
+    public void MakeMaterialVisible()
+    {
+        this.GetComponent<MeshRenderer>().material = realMaterial;
+    }
 }
