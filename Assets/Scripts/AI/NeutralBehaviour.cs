@@ -11,6 +11,5 @@ public class NeutralBehaviour : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         this.transform.position = Vector3.MoveTowards(this.transform.position, Player.Instance.transform.position, speed * Time.deltaTime);
-
 	}
 }

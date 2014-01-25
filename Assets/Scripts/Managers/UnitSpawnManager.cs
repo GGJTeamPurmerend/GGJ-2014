@@ -69,7 +69,7 @@ public class UnitSpawnManager : MonoBehaviour {
             unit.InitializeUnitType(UnitType.Circle);
         }
         units.Add(unit);
-        Debug.Log(unit);
+
         if (Random.value > hostileRatio)
         {
             unit.InitializeAIType(AIType.Friendly);
