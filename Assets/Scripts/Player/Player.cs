@@ -41,8 +41,12 @@ public class Player : MonoBehaviour {
 	public Boundary boundary;
 
 	private bool isDashing = false;
+    private bool inCooldown = false;
 
-	private float deltaTime = 0;
+	private float cooldownPeriod = 1.0f;
+    private float dashPeriod = 0.5f;
+
+    private int i = 0;
 
 
 	void Awake() {
@@ -159,24 +163,56 @@ public class Player : MonoBehaviour {
             return;
         }
 
-        if (Input.GetAxis("R Trigger") == 1 || Input.GetKey(KeyCode.Space))
+        if (inCooldown)
+        {
+            dashPeriod -= Time.deltaTime;
+            cooldownPeriod -= Time.deltaTime;
+            if (dashPeriod > 0)
+            {
+                Dash(1f, this.transform.rotation * Vector3.forward);
+            }
+            else
+            {
+                isDashing = false;
+            }
+            if (cooldownPeriod < 0)
+            {
+                inCooldown = false;
+                dashPeriod = 0.5f;
+                cooldownPeriod = 1.0f;
+            }
+            if (dashPeriod < 0 && cooldownPeriod > 0)
+            {
+                movePlayer(moveHorizontal, moveVertical);
+            }
+        }
+        else if (Input.GetAxis("R Trigger") == 1 || Input.GetKey(KeyCode.Space))
         {
             Dash(1f, this.transform.rotation * Vector3.forward);
+            this.gameObject.GetComponents<AudioSource>()[0].Play();
+            inCooldown = true;
 		}
 		else {
-            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-			gameObject.GetComponentInChildren<Animator>().SetBool("dashing", false);
-			if(movement.magnitude > 0.25f) {
-				gameObject.GetComponentInChildren<Animator>().SetBool("moving", true);
-				isDashing = false;
-				playerContainerReference.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + movement, Time.deltaTime * speed);
-				this.transform.rotation = Quaternion.LookRotation(movement);
-			}
-			else {
-				gameObject.GetComponentInChildren<Animator>().SetBool("moving", false);
-			}
+            movePlayer(moveHorizontal, moveVertical);
 		}
 	}
+
+    void movePlayer(float moveHorizontal, float moveVertical)
+    {
+        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        gameObject.GetComponentInChildren<Animator>().SetBool("dashing", false);
+        if (movement.magnitude > 0.25f)
+        {
+            gameObject.GetComponentInChildren<Animator>().SetBool("moving", true);
+            isDashing = false;
+            playerContainerReference.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + movement, Time.deltaTime * speed);
+            this.transform.rotation = Quaternion.LookRotation(movement);
+        }
+        else
+        {
+            gameObject.GetComponentInChildren<Animator>().SetBool("moving", false);
+        }
+    }
 
     void Dash(float extraPower, Vector3 direction)
     {
@@ -186,7 +222,6 @@ public class Player : MonoBehaviour {
         dashDirection = direction;
         dashDirection.Normalize();
         playerContainerReference.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + dashDirection, Time.deltaTime * dashSpeed * extraPower);
-        this.gameObject.GetComponents<AudioSource>()[0].Play();
     }
 
     void GetChainInput()
