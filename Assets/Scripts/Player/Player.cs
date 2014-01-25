@@ -53,6 +53,7 @@ public class Player : MonoBehaviour {
 		if(Input.GetButtonDown("X Button")) {
 			toggleState();
 			UnitSpawnManager.Instance.UpdatePlayerState(state);
+            this.gameObject.GetComponents<AudioSource>()[2].Play();
 		}
 	}
 
@@ -72,6 +73,7 @@ public class Player : MonoBehaviour {
 	}
 
 	public void kill() {
+        this.gameObject.GetComponents<AudioSource>()[3].Play();
 		Application.LoadLevel(0);
 	}
 
@@ -133,6 +135,7 @@ public class Player : MonoBehaviour {
 			dashDirection = this.transform.rotation * Vector3.forward;
 			dashDirection.Normalize();
 			playerContainerReference.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + dashDirection, Time.deltaTime * dashSpeed);
+            this.gameObject.GetComponents<AudioSource>()[0].Play();
 		}
 		else {
 			gameObject.GetComponentInChildren<Animator>().SetBool("dashing", false);
@@ -148,6 +151,7 @@ public class Player : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if(isDashing) {
 			UnitSpawnManager.Instance.killUnit(other.GetComponent<NPC>());
+            this.gameObject.GetComponents<AudioSource>()[1].Play();
 		}
 	}
 
