@@ -34,7 +34,7 @@ public class NeutralBehaviour : MonoBehaviour {
         {
             Vector3 eulerAngles = transform.eulerAngles;
             transform.LookAt(target.transform);
-            transform.eulerAngles = Vector3.Slerp(eulerAngles, transform.eulerAngles, Time.deltaTime * 1.5f);
+            transform.eulerAngles = Vector3.Slerp(eulerAngles, transform.eulerAngles, Time.deltaTime * 1);
             if (Vector2.Distance(transform.position, target.position) <= TweakableValues.BluffAggroPlayerDistance)
             {
                 if (aggroIsFake)
@@ -50,7 +50,7 @@ public class NeutralBehaviour : MonoBehaviour {
                     this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + dashDirection, Time.deltaTime * enemyDashSpeed);
                 }
             }
-            speed *= 2f;
+            speed *= 1.5f;
         }
         else
         {
