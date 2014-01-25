@@ -8,6 +8,7 @@ public class NPC : MonoBehaviour {
     public AIType AIType;
     public UnitType UnitType;
     public bool IsSpotted = false;
+    public string closest = "";
 
     public Material friendly, hostile;
     Material defaultMaterial;

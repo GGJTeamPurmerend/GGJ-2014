@@ -24,9 +24,10 @@ public class HostileBehaviour : NeutralBehaviour
             }
             else
             {
+                this.GetComponent<NPC>().Kill();
                 Player.Instance.StartChain();
                 PlayerCamera.Instance.ShakeCamera();
-                this.GetComponent<NPC>();
+              //  this.GetComponent<NPC>().
             }
         }
     }

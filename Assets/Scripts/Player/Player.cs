@@ -11,12 +11,18 @@ public enum UnitType {
 	Cube, Circle
 };
 
+public enum ChainState
+{
+    None, Pre, Dashing, In
+}
+
 public class Player : MonoBehaviour {
 
 	public static Player Instance;
 
 	public UnitType state = UnitType.Cube;
-	public bool IsChaining = false;
+    public ChainState chainState = ChainState.None;
+    NPC currentlyDashingChainedUnit;
 
 	[SerializeField]
 	GameObject playerContainerReference;
@@ -31,7 +37,7 @@ public class Player : MonoBehaviour {
 	public float speed;
 	[SerializeField]
 	RuntimeAnimatorController controller1, controller2;
-	public int dashSpeed;
+	public float dashSpeed;
 	public Boundary boundary;
 
 	private bool isDashing = false;
@@ -78,31 +84,52 @@ public class Player : MonoBehaviour {
 	}
 
 	public void StartChain() {
-		IsChaining = true;
+        chainState = ChainState.Pre;
 
 		StartCoroutine(Chaining());
 	}
 
 	IEnumerator Chaining() {
 		while(true) {
-			List<NPC> unitsInChainRange = UnitSpawnManager.Instance.Units.FindAll(x => x.UnitType == this.state && x.AIType == AIType.Hostile && Vector2.Distance(x.transform.position, this.transform.position) < (2f + chainCount * 1));
-			if(unitsInChainRange.Count == 0) {
+            
+            List<NPC> unitsInChainRange = UnitSpawnManager.Instance.Units.FindAll(x => x.UnitType == this.state && x.AIType == AIType.Hostile && Vector3.Distance(x.transform.position, playerContainerReference.transform.position) < (13f + chainCount));
+  
+            List<NPC> nearestUnits = new List<NPC>();
+            if (unitsInChainRange.Count > 0)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    float closestDistance = 10000f;
+                    NPC nearestUnit = unitsInChainRange[0];
+                    for (int i = 0; i < unitsInChainRange.Count; i++)
+                    {
+                        NPC unit = unitsInChainRange[i];
+                        float distance = Vector3.Distance(this.playerContainerReference.transform.position, unit.transform.position);
+                        if (distance > closestDistance) continue;
+                        if (nearestUnits.Contains(unit)) continue;
+                        closestDistance = distance;
+                        nearestUnit = unit;
+                    }
+
+                    nearestUnits.Add(nearestUnit);
+                }
+            }
+
+            if (nearestUnits.Count == 0)
+            {
+                if (chainCount != 0)
+                {
+                    // TODO: chainstreak has been ended
+                }
 				break;
 			}
 
-			foreach(NPC unit in unitsInChainRange) {
+            foreach (NPC unit in nearestUnits)
+            {
 				GameObject arrow = (GameObject)Instantiate(directionArrowPrefab);
-				arrow.GetComponent<DirectionArrow>().Initialize(unit.transform);
+				arrow.GetComponent<DirectionArrow>().Initialize(unit);
 				arrow.transform.parent = this.playerContainerReference.transform;
 				arrow.transform.localPosition = new Vector3(0, 0, 0);
-				/* // get a random direction (360°) in radians
-				 float angle = Vector2.Angle(this.transform.position, unit.transform.position);
-				 Debug.Log("angle: " + angle);
-				 // create a vector with length 1.0
-				 Vector3 v = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
-				 // scale it to the desired length
-				 v *= 1.5f;
-				 arrow.transform.localPosition = v;*/
 			}
 
 			yield return new WaitForSeconds(20f);
@@ -111,7 +138,7 @@ public class Player : MonoBehaviour {
 
 		}
 
-		IsChaining = false;
+        chainState = ChainState.None;
 		chainCount = 0;
 	}
 
@@ -122,24 +149,23 @@ public class Player : MonoBehaviour {
 		float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
 
-		float lookHorizontal = Input.GetAxis("RStick X");
-		float lookVertical = Input.GetAxis("RStick Y");
+        GetChainInput();
 
-		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-		Vector3 dashDirection = Vector3.zero;
+        if (chainState == ChainState.Dashing)
+        {
+            Vector3 direction = currentlyDashingChainedUnit.transform.position - this.playerContainerReference.transform.position;
+            Dash(4f, direction);
+            this.transform.rotation = Quaternion.LookRotation(currentlyDashingChainedUnit.transform.position);
+            return;
+        }
 
         if (Input.GetAxis("R Trigger") == 1 || Input.GetKey(KeyCode.Space))
         {
-			gameObject.GetComponentInChildren<Animator>().SetBool("dashing", true);
-			isDashing = true;
-			dashDirection = this.transform.rotation * Vector3.forward;
-			dashDirection.Normalize();
-			playerContainerReference.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + dashDirection, Time.deltaTime * dashSpeed);
-            this.gameObject.GetComponents<AudioSource>()[0].Play();
+            Dash(1f, this.transform.rotation * Vector3.forward);
 		}
 		else {
+            Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 			gameObject.GetComponentInChildren<Animator>().SetBool("dashing", false);
-			
 			if(movement.magnitude > 0.25f) {
 				gameObject.GetComponentInChildren<Animator>().SetBool("moving", true);
 				isDashing = false;
@@ -152,9 +178,63 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+    void Dash(float extraPower, Vector3 direction)
+    {
+        Vector3 dashDirection;
+        gameObject.GetComponentInChildren<Animator>().SetBool("dashing", true);
+        isDashing = true;
+        dashDirection = direction;
+        dashDirection.Normalize();
+        playerContainerReference.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + dashDirection, Time.deltaTime * dashSpeed * extraPower);
+        this.gameObject.GetComponents<AudioSource>()[0].Play();
+    }
+
+    void GetChainInput()
+    {
+        float lookHorizontal = Input.GetAxis("RStick X");
+        float lookVertical = Input.GetAxis("RStick Y");
+
+        Vector2 pos = new Vector2(lookVertical, lookHorizontal);
+
+        if (chainState == ChainState.Pre)
+        {
+        
+            if (pos.magnitude >= 1f)
+            {
+                pos *= 2f;
+                Vector3 newPos = new Vector3();
+                newPos.x = Player.Instance.transform.position.x + pos.x;
+                newPos.z = Player.Instance.transform.position.z + -pos.y;
+
+                DirectionArrow[] arrows = FindObjectsOfType<DirectionArrow>();
+                bool removeArrows = false;
+                foreach (DirectionArrow arrow in arrows)
+                {
+                    if (Vector3.Distance(arrow.transform.GetChild(0).position, newPos) < 1.7f)
+                    {
+                        currentlyDashingChainedUnit = arrow.unit;
+                        chainState = ChainState.Dashing;
+                        removeArrows = true;
+                    }
+                }
+                if (removeArrows)
+                {
+                    foreach (DirectionArrow arrow in arrows)
+                    {
+                        GameObject.Destroy(arrow.gameObject);
+                    }
+                }
+            }
+        }
+    }
+
+    void ChainToUnit(NPC unit)
+    {
+        
+    }
+
 	void OnTriggerEnter(Collider other) {
 		if(isDashing) {
-			UnitSpawnManager.Instance.killUnit(other.GetComponent<NPC>());
             this.gameObject.GetComponents<AudioSource>()[1].Play();
 		}
 	}
