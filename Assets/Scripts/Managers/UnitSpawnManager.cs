@@ -6,9 +6,6 @@ public class UnitSpawnManager : MonoBehaviour {
 
     public static UnitSpawnManager Instance;
 
-    public int mininumUnits = 50;
-    public float hostileRatio = 0.5f;
-
     List<NPC> units = new List<NPC>();
 
     public NPC CubeUnitPrefab;
@@ -36,7 +33,7 @@ public class UnitSpawnManager : MonoBehaviour {
     {
         while (true)
         {
-            if (units.Count < mininumUnits)
+            if (units.Count < TweakableValues.MinimumUnits)
             {
                 SpawnUnit();
             }
@@ -46,14 +43,14 @@ public class UnitSpawnManager : MonoBehaviour {
 
     void SpawnUnit()
     {
-        float range = 15f;
+        float range = TweakableValues.MinimumUnitDistanceToPlayer;
 
         // get a random direction (360°) in radians
         float angle = Random.Range(0.0f, Mathf.PI * 2);
         // create a vector with length 1.0
         Vector3 v = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle));
         // scale it to the desired length
-        v *= (range + Random.Range(1f, 10f));
+        v *= (range + Random.Range(1f, 30f));
 
         v += Player.Instance.transform.position;
 
@@ -70,7 +67,7 @@ public class UnitSpawnManager : MonoBehaviour {
         }
         units.Add(unit);
 
-        if (Random.value > hostileRatio)
+        if (Random.value > TweakableValues.UnitHostileRatio)
         {
             unit.InitializeAIType(AIType.Friendly);
         }

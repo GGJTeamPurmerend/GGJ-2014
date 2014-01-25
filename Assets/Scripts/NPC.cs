@@ -66,4 +66,9 @@ public class NPC : MonoBehaviour {
             this.GetComponent<MeshRenderer>().material = defaultMaterial;
         }
     }
+
+    public void BlufPlayer()
+    {
+
+    }
 }
