@@ -6,6 +6,8 @@ public class NeutralBehaviour : MonoBehaviour {
     public float directionChangeInterval = 1;
     public float maxHeadingChange = 30;
 
+    public int enemyDashSpeed = 4;
+
     Transform target;
     float heading;
     Vector3 targetRotation;
@@ -41,7 +43,11 @@ public class NeutralBehaviour : MonoBehaviour {
                 }
                 else
                 {
-                    // TODO: Dash player?
+                    
+                    Vector3 dashDirection = Vector3.zero;
+                    dashDirection = this.transform.rotation * Vector3.forward;
+                    dashDirection.Normalize();
+                    this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + dashDirection, Time.deltaTime * enemyDashSpeed);
                 }
             }
             speed *= 2f;
@@ -81,4 +87,5 @@ public class NeutralBehaviour : MonoBehaviour {
         heading = Random.Range(floor, ceil);
         targetRotation = new Vector3(0, heading, 0);
     }
+
 }

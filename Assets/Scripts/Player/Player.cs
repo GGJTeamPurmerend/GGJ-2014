@@ -68,5 +68,10 @@ public class Player : MonoBehaviour {
     {
         return state;
     }
+
+    public void kill()
+    {
+        Application.LoadLevel(0);
+    }
 	
 }

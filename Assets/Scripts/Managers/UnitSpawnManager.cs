@@ -97,4 +97,10 @@ public class UnitSpawnManager : MonoBehaviour {
             unit.InitializeAIType(AIType.Hostile);
         }
     }
+
+    public void killUnit(NPC unit)
+    {
+        RemoveUnit(unit);
+        Destroy(unit.gameObject);
+    }
 }
