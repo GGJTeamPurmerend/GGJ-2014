@@ -10,12 +10,12 @@ public class NPC : MonoBehaviour {
     public bool IsSpotted = false;
     public string closest = "";
 
-    public Material friendly, hostile;
-    Material defaultMaterial;
+    public Sprite friendly, hostile;
+    Sprite defaultSprite;
 
     bool hasBeenSpottedBefore = false;
     MonoBehaviour realBehaviour;
-    Material realMaterial;
+    Sprite realSprite;
 	
 	// Update is called once per frame
 	void Update () {
@@ -43,15 +43,15 @@ public class NPC : MonoBehaviour {
         {
             case AIType.Friendly:
                 realBehaviour = this.gameObject.AddComponent<FriendlyBehaviour>();
-                realMaterial = friendly;
+                realSprite = friendly;
                 break;
             case AIType.Hostile:
                 realBehaviour = this.gameObject.AddComponent<HostileBehaviour>();
-                realMaterial = hostile;
+                realSprite = hostile;
                 break;
         }
 
-        defaultMaterial = this.GetComponent<MeshRenderer>().material;
+        defaultSprite = this.GetComponentInChildren<SpriteRenderer>().sprite;
 
         realBehaviour.enabled = false;
         if (Player.Instance.state == UnitType)
@@ -73,11 +73,11 @@ public class NPC : MonoBehaviour {
         }
         if (isSpotted)
         {
-            this.GetComponent<MeshRenderer>().material = realMaterial;
+            this.GetComponentInChildren<SpriteRenderer>().sprite = realSprite;
         }
         else
         {
-            this.GetComponent<MeshRenderer>().material = defaultMaterial;
+			this.GetComponentInChildren<SpriteRenderer>().sprite = defaultSprite;
         }
     }
 
