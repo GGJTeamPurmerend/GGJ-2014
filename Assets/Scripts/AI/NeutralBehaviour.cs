@@ -27,11 +27,12 @@ public class NeutralBehaviour : MonoBehaviour {
 
     void Update()
     {
+        float speed = TweakableValues.NeutralNPCSpeed;
         if (target != null)
         {
             Vector3 eulerAngles = transform.eulerAngles;
             transform.LookAt(target.transform);
-            transform.eulerAngles = Vector3.Slerp(eulerAngles, transform.eulerAngles, Time.deltaTime * directionChangeInterval);
+            transform.eulerAngles = Vector3.Slerp(eulerAngles, transform.eulerAngles, Time.deltaTime * 1.5f);
             if (Vector2.Distance(transform.position, target.position) <= TweakableValues.BluffAggroPlayerDistance)
             {
                 if (aggroIsFake)
@@ -42,14 +43,15 @@ public class NeutralBehaviour : MonoBehaviour {
                 {
                     // TODO: Dash player?
                 }
-            }   
+            }
+            speed *= 2f;
         }
         else
         {
             transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, targetRotation, Time.deltaTime * directionChangeInterval);
         }
         var forward = transform.TransformDirection(Vector3.forward);
-        this.rigidbody.velocity = forward * TweakableValues.NeutralNPCSpeed;
+        this.rigidbody.velocity = forward * speed;
     }
 
     /// <summary>
