@@ -30,7 +30,6 @@ public class PlayerCamera : MonoBehaviour {
     {
         iTween.ShakePosition(CameraHolder, new Vector3(0.5f, 0.5f, 0.5f), 0.2f);
      //   iTween.ShakePosition(CameraHolder, iTween.Hash("z", -1f, "time", 1.0f));
-        Debug.Log("SHAKE");
     }
 
 }

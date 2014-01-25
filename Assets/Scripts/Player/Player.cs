@@ -126,7 +126,8 @@ public class Player : MonoBehaviour {
 		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 		Vector3 dashDirection = Vector3.zero;
 
-		if(Input.GetAxis("R Trigger") == 1) {
+        if (Input.GetAxis("R Trigger") == 1 || Input.GetKey(KeyCode.Space))
+        {
 			gameObject.GetComponentInChildren<Animator>().SetBool("dashing", true);
 			isDashing = true;
 			dashDirection = this.transform.rotation * Vector3.forward;
