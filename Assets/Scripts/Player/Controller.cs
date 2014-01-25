@@ -16,7 +16,7 @@ public class Controller : MonoBehaviour {
 
 	private float deltaTime = 0;
 
-	void Update() {
+	void FixedUpdate() {
 		float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
 
@@ -24,39 +24,17 @@ public class Controller : MonoBehaviour {
 		float lookVertical = Input.GetAxis("RStick Y");
 
 		Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-		Vector3 lookDirection = new Vector3(lookVertical, 0.0f, -lookHorizontal);
+		Vector3 dashDirection = Vector3.zero;
 
-		rigidbody.velocity = Vector3.zero;
-
-		if(lookDirection.magnitude > 0.75f || isDashing == true && deltaTime > 0) {
-			if(isDashing == false) {
-				deltaTime += 0.25f;
-			}
-			isDashing = true;
-
-			lookDirection.Normalize();
-
-			rigidbody.velocity = lookDirection * dashSpeed;
-			this.transform.rotation = Quaternion.LookRotation(lookDirection);
-
-			deltaTime -= Time.deltaTime;
+		if(Input.GetAxis("R Trigger") == 1) {
+			dashDirection = this.transform.rotation * Vector3.forward;
+			dashDirection.Normalize();
+			this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + dashDirection, Time.deltaTime * dashSpeed);
 		}
-		else {
-			isDashing = false;
-
-			if(movement.magnitude > 0.25f) {
-				rigidbody.velocity += movement * speed;
-				this.transform.rotation = Quaternion.LookRotation(movement);
-			}
-			else {
-				rigidbody.velocity = Vector3.zero;
-			}
+		else if(movement.magnitude > 0.25f) {
+			this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + movement, Time.deltaTime * speed);
+			this.transform.rotation = Quaternion.LookRotation(movement);
 		}
 
-		rigidbody.position = new Vector3(
-			Mathf.Clamp(rigidbody.position.x, boundary.xMin, boundary.xMax),
-			0.0f,
-			Mathf.Clamp(rigidbody.position.z, boundary.zMin, boundary.zMax)
-		);
 	}
 }
