@@ -10,4 +10,9 @@ public class TweakableValues : MonoBehaviour {
     public static float BluffAggroPlayerDistance = 2f;
     public static float NPCMaxDistance = MinimumUnitDistanceToPlayer * 2;
     public static float NeutralNPCSpeed = 2f;
+
+	// Unit separation
+	public static float separationRange = 15;
+	public static float separationWeight = 0.6f;
+	public static float targetWeight = 0.4f;
 }
