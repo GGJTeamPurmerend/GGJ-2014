@@ -82,6 +82,7 @@ public class NPC : MonoBehaviour {
 
     public void AggroToPlayer()
     {
+        Debug.Log("ISAGGROING");
         if (IsSpotted)
         {
             Debug.LogWarning("AttractToPlayer can't be called when unit is spotted!!");

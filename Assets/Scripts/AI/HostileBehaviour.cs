@@ -3,10 +3,15 @@ using System.Collections;
 
 public class HostileBehaviour : NeutralBehaviour
 {
-
-    void OnEnable()
+    bool isAggroing = false;
+    override public void Update()
     {
-        AggroToPlayer(false);
+        base.Update();
+        if (!isAggroing && Vector2.Distance(this.transform.position, Player.Instance.transform.position) < TweakableValues.MinimumUnitDistanceToPlayer/2f)
+        {
+            AggroToPlayer(false);
+        }
+        
     }
 
     void OnTriggerEnter(Collider other)

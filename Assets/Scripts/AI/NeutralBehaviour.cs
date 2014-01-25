@@ -27,7 +27,7 @@ public class NeutralBehaviour : MonoBehaviour {
         StartCoroutine(NewHeading());
     }
 
-    void Update()
+    public virtual void Update()
     {
         float speed = TweakableValues.NeutralNPCSpeed;
         if (target != null)
