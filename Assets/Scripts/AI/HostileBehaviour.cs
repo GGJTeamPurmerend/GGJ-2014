@@ -16,11 +16,12 @@ public class HostileBehaviour : NeutralBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (!this.enabled) return;
         if (other.tag == "Player")
         {
             if (!other.GetComponent<Player>().IsDashing())
             {
-                other.gameObject.GetComponent<Player>().kill();
+                other.gameObject.GetComponent<Player>().Kill();
             }
             else
             {

@@ -30,28 +30,9 @@ public class NeutralBehaviour : MonoBehaviour {
 	}
 
 	public virtual void Update() {
-		// Separation
-		/*separationPosition = Vector3.zero;
-		separationCount = 0;
-		foreach(NPC unit in UnitSpawnManager.Instance.Units) {
-			if(Vector3.Distance(this.transform.position, unit.transform.position) < TweakableValues.separationRange) {
-				separationPosition += unit.transform.position;
-				separationCount++;
-			}
-		}
-		separationPosition /= separationCount;
-		separationPosition -= this.transform.position;
-		separationPosition *= -1;
-
-		Debug.DrawLine(this.transform.position, this.transform.position + separationPosition.normalized);*/
 
 		float speed = TweakableValues.NeutralNPCSpeed;
 		if(target != null) {
-			/*direction = 
-				(target.position-this.transform.position).normalized * TweakableValues.targetWeight + 
-				separationPosition.normalized * TweakableValues.separationWeight;
-
-			*/
 			Vector3 eulerAngles = transform.eulerAngles;
 			//transform.LookAt(this.transform.position + direction.normalized);
 			transform.LookAt(target.position);

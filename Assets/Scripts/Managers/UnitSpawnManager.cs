@@ -78,23 +78,14 @@ public class UnitSpawnManager : MonoBehaviour {
         {
             unit = (NPC)Instantiate(CubeUnitPrefab, v, Quaternion.identity);
             unit.gameObject.AddComponent<NeutralBehaviour>();
-            unit.InitializeUnitType(UnitType.Cube);
+            unit.Initialize(UnitType.Cube);
         }
         else
         {
             unit = (NPC)Instantiate(CircleUnitPrefab, v, Quaternion.identity);
             unit.gameObject.AddComponent<NeutralBehaviour>();
-            unit.InitializeUnitType(UnitType.Circle);
+            unit.Initialize(UnitType.Circle);
         }
         Units.Add(unit);
-
-        if (Random.value > TweakableValues.UnitHostileRatio)
-        {
-            unit.InitializeAIType(AIType.Friendly);
-        }
-        else
-        {
-            unit.InitializeAIType(AIType.Hostile);
-        }
     }
 }
