@@ -18,9 +18,15 @@ public class HostileBehaviour : NeutralBehaviour
     {
         if (other.tag == "Player")
         {
-            if (!other.GetComponent<Controller>().getDashing())
+            if (!other.GetComponent<Player>().IsDashing())
             {
                 other.gameObject.GetComponent<Player>().kill();
+            }
+            else
+            {
+                Player.Instance.StartChain();
+                PlayerCamera.Instance.ShakeCamera();
+                this.GetComponent<NPC>();
             }
         }
     }

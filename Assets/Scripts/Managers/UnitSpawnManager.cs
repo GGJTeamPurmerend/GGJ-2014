@@ -6,14 +6,14 @@ public class UnitSpawnManager : MonoBehaviour {
 
     public static UnitSpawnManager Instance;
 
-    List<NPC> units = new List<NPC>();
+    public List<NPC> Units = new List<NPC>();
 
     public NPC CubeUnitPrefab;
     public NPC CircleUnitPrefab;
 
     public void UpdatePlayerState(UnitType playerState)
     {
-        foreach (NPC npc in units)
+        foreach (NPC npc in Units)
         {
             npc.ToggleSpotted(npc.UnitType == playerState);
         }
@@ -21,7 +21,7 @@ public class UnitSpawnManager : MonoBehaviour {
 
     public void RemoveUnit(NPC unit)
     {
-        units.Remove(unit);
+        Units.Remove(unit);
     }
 
 
@@ -39,7 +39,7 @@ public class UnitSpawnManager : MonoBehaviour {
     {
         while (true)
         {
-            if (units.Count < TweakableValues.MinimumUnits)
+            if (Units.Count < TweakableValues.MinimumUnits)
             {
                 SpawnUnit();
             }
@@ -52,7 +52,7 @@ public class UnitSpawnManager : MonoBehaviour {
         while (true)
         {
             yield return new WaitForSeconds(TweakableValues.PlayerAttractsUnitRatio);
-            List<NPC> unspottedUnits = units.FindAll(x => !x.IsSpotted && Vector2.Distance(x.transform.position, Player.Instance.transform.position) < TweakableValues.MinimumUnitDistanceToPlayer);
+            List<NPC> unspottedUnits = Units.FindAll(x => !x.IsSpotted && Vector2.Distance(x.transform.position, Player.Instance.transform.position) < TweakableValues.MinimumUnitDistanceToPlayer);
             if (unspottedUnits.Count > 0)
             {
                 unspottedUnits[Random.Range(0, unspottedUnits.Count - 1)].AggroToPlayer();
@@ -86,7 +86,7 @@ public class UnitSpawnManager : MonoBehaviour {
             unit.gameObject.AddComponent<NeutralBehaviour>();
             unit.InitializeUnitType(UnitType.Circle);
         }
-        units.Add(unit);
+        Units.Add(unit);
 
         if (Random.value > TweakableValues.UnitHostileRatio)
         {
