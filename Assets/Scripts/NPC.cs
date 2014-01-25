@@ -94,6 +94,6 @@ public class NPC : MonoBehaviour {
 
     public void MakeMaterialVisible()
     {
-        this.GetComponent<MeshRenderer>().material = realMaterial;
+        this.GetComponentInChildren<SpriteRenderer>().sprite = realSprite;
     }
 }
