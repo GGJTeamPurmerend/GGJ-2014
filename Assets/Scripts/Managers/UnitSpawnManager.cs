@@ -19,6 +19,11 @@ public class UnitSpawnManager : MonoBehaviour {
         }
     }
 
+    public void RemoveUnit(NPC unit)
+    {
+        units.Remove(unit);
+    }
+
 
     void Awake()
     {
@@ -27,6 +32,7 @@ public class UnitSpawnManager : MonoBehaviour {
 
 	void Start () {
         StartCoroutine(SpawnUnits());
+        StartCoroutine(AttractUnitToPlayer());
 	}
 	
     IEnumerator SpawnUnits()
@@ -38,6 +44,19 @@ public class UnitSpawnManager : MonoBehaviour {
                 SpawnUnit();
             }
             yield return new WaitForEndOfFrame();
+        }
+    }
+
+    IEnumerator AttractUnitToPlayer()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(TweakableValues.PlayerAttractsUnitRatio);
+            List<NPC> unspottedUnits = units.FindAll(x => !x.IsSpotted && Vector2.Distance(x.transform.position, Player.Instance.transform.position) < TweakableValues.MinimumUnitDistanceToPlayer);
+            if (unspottedUnits.Count > 0)
+            {
+                unspottedUnits[Random.Range(0, unspottedUnits.Count - 1)].AggroToPlayer();
+            }
         }
     }
 
@@ -58,11 +77,13 @@ public class UnitSpawnManager : MonoBehaviour {
         if (Random.value > 0.5f)
         {
             unit = (NPC)Instantiate(CubeUnitPrefab, v, Quaternion.identity);
+            unit.gameObject.AddComponent<NeutralBehaviour>();
             unit.InitializeUnitType(UnitType.Cube);
         }
         else
         {
             unit = (NPC)Instantiate(CircleUnitPrefab, v, Quaternion.identity);
+            unit.gameObject.AddComponent<NeutralBehaviour>();
             unit.InitializeUnitType(UnitType.Circle);
         }
         units.Add(unit);
@@ -75,6 +96,5 @@ public class UnitSpawnManager : MonoBehaviour {
         {
             unit.InitializeAIType(AIType.Hostile);
         }
-        unit.gameObject.AddComponent<NeutralBehaviour>();
     }
 }

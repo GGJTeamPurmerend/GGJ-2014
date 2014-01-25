@@ -1,15 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class HostileBehaviour : MonoBehaviour {
+public class HostileBehaviour : NeutralBehaviour
+{
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    void OnEnable()
+    {
+        AggroToPlayer(false);
+    }
 }

@@ -30,8 +30,6 @@ public class Controller : MonoBehaviour
 
         rigidbody.velocity = Vector3.zero;
 
-        Debug.Log(lookHorizontal + ", " + lookVertical);
-
         if (lookDirection.magnitude > 0.9 || isDashingPressed == true && deltaTime > 0)
         {
             if (isDashingPressed == false)

@@ -7,6 +7,7 @@ public class NPC : MonoBehaviour {
 
     public AIType AIType;
     public UnitType UnitType;
+    public bool IsSpotted = false;
 
     public Material friendly, hostile;
     Material defaultMaterial;
@@ -14,17 +15,20 @@ public class NPC : MonoBehaviour {
     bool hasBeenSpottedBefore = false;
     MonoBehaviour realBehaviour;
     Material realMaterial;
-
-	// Use this for initialization
-	void Start () {
-        defaultMaterial = this.GetComponent<MeshRenderer>().material;
-	}
 	
 	// Update is called once per frame
 	void Update () {
-       
+        if (Vector2.Distance(this.transform.position, Player.Instance.transform.position) >= TweakableValues.NPCMaxDistance)
+        {
+            this.Kill();
+        }
     }
 
+    public void Kill()
+    {
+        UnitSpawnManager.Instance.RemoveUnit(this);
+        GameObject.Destroy(this.gameObject);
+    }
     public void InitializeUnitType(UnitType unitType)
     {
         this.UnitType = unitType;
@@ -45,18 +49,27 @@ public class NPC : MonoBehaviour {
                 realMaterial = hostile;
                 break;
         }
+
+        defaultMaterial = this.GetComponent<MeshRenderer>().material;
+
         realBehaviour.enabled = false;
+        if (Player.Instance.state == UnitType)
+        {
+            ToggleSpotted(true);
+        }
+
     }
 
     public void ToggleSpotted(bool isSpotted)
     {
+        IsSpotted = isSpotted;
         if (isSpotted && !hasBeenSpottedBefore)
         {
             hasBeenSpottedBefore = true;
             realBehaviour.enabled = true;
             this.GetComponent<NeutralBehaviour>().enabled = false;
+            realBehaviour.enabled = true;
         }
-
         if (isSpotted)
         {
             this.GetComponent<MeshRenderer>().material = realMaterial;
@@ -67,8 +80,14 @@ public class NPC : MonoBehaviour {
         }
     }
 
-    public void BlufPlayer()
+    public void AggroToPlayer()
     {
-
+        if (IsSpotted)
+        {
+            Debug.LogWarning("AttractToPlayer can't be called when unit is spotted!!");
+            return;
+        }
+        bool aggroIsFake = AIType == AIType.Friendly;
+        this.GetComponent<NeutralBehaviour>().AggroToPlayer(aggroIsFake);
     }
 }

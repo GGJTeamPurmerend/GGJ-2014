@@ -10,13 +10,15 @@ public class Player : MonoBehaviour {
 
     public static Player Instance;
 
+    public UnitType state = UnitType.Cube;
+
     [SerializeField]
     GameObject cubeReference;
     [SerializeField]
     GameObject cylinderReference;
 
     GameObject currentStateObject;
-    UnitType state = UnitType.Cube;
+   
 
     void Awake()
     {
