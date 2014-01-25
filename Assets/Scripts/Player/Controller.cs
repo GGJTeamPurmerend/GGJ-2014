@@ -36,9 +36,6 @@ public class Controller : MonoBehaviour {
             isDashing = false;
 			this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + movement, Time.deltaTime * speed);
 			this.transform.rotation = Quaternion.LookRotation(movement);
-			Vector3 rotation = this.transform.rotation.eulerAngles;
-			rotation.x = 90;
-			this.transform.rotation = Quaternion.Euler(rotation);
 		}
 
 	}
