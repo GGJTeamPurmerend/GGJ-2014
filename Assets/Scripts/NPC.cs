@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum AIType { Friendly, Hostile };
-
 public class NPC : MonoBehaviour {
 
-    public AIType AIType;
     public UnitType UnitType;
     public bool IsSpotted = false;
     public string closest = "";
 
-    public Sprite friendly, hostile;
+    public Sprite hostile;
     Sprite defaultSprite;
 
     bool hasBeenSpottedBefore = false;
@@ -35,22 +32,12 @@ public class NPC : MonoBehaviour {
         this.UnitType = unitType;
     }
 
-    public void InitializeAIType(AIType aiType)
+    public void Initialize(UnitType type)
     {
-        this.AIType = aiType;
+        UnitType = type;
         realBehaviour = null;
-        switch (aiType)
-        {
-            case AIType.Friendly:
-                realBehaviour = this.gameObject.AddComponent<FriendlyBehaviour>();
-                realSprite = friendly;
-                break;
-            case AIType.Hostile:
-                realBehaviour = this.gameObject.AddComponent<HostileBehaviour>();
-                realSprite = hostile;
-                break;
-        }
-
+        realBehaviour = this.gameObject.AddComponent<HostileBehaviour>();
+        realSprite = hostile;
         defaultSprite = this.GetComponentInChildren<SpriteRenderer>().sprite;
 
         realBehaviour.enabled = false;
@@ -64,13 +51,8 @@ public class NPC : MonoBehaviour {
     public void ToggleSpotted(bool isSpotted)
     {
         IsSpotted = isSpotted;
-        if (isSpotted && !hasBeenSpottedBefore)
-        {
-            hasBeenSpottedBefore = true;
-            realBehaviour.enabled = true;
-            this.GetComponent<NeutralBehaviour>().enabled = false;
-            realBehaviour.enabled = true;
-        }
+        this.GetComponent<NeutralBehaviour>().enabled = !isSpotted;
+        this.GetComponent<HostileBehaviour>().enabled = isSpotted;
         if (isSpotted)
         {
             this.GetComponentInChildren<SpriteRenderer>().sprite = realSprite;
@@ -88,8 +70,7 @@ public class NPC : MonoBehaviour {
             Debug.LogWarning("AttractToPlayer can't be called when unit is spotted!!");
             return;
         }
-        bool aggroIsFake = AIType == AIType.Friendly;
-        this.GetComponent<NeutralBehaviour>().AggroToPlayer(aggroIsFake);
+        this.GetComponent<NeutralBehaviour>().AggroToPlayer(false);
     }
 
     public void MakeMaterialVisible()
