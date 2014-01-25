@@ -141,9 +141,13 @@ public class Player : MonoBehaviour {
 			gameObject.GetComponentInChildren<Animator>().SetBool("dashing", false);
 			
 			if(movement.magnitude > 0.25f) {
+				gameObject.GetComponentInChildren<Animator>().SetBool("moving", true);
 				isDashing = false;
 				playerContainerReference.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + movement, Time.deltaTime * speed);
 				this.transform.rotation = Quaternion.LookRotation(movement);
+			}
+			else {
+				gameObject.GetComponentInChildren<Animator>().SetBool("moving", false);
 			}
 		}
 	}
