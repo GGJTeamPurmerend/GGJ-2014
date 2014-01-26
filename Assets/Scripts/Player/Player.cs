@@ -108,11 +108,17 @@ public class Player : MonoBehaviour {
 	}
     
 	public void StartChain() {
+        StartCoroutine(Chaining());
+	}
+
+    IEnumerator Chaining()
+    {
+       // yield return new WaitForSeconds(0.1f);
         chainState = ChainState.Pre;
         chainCount++;
         float increaser = chainCount * 0.6f;
         if (increaser > 6) increaser = 6f;
-        List<NPC> unitsInChainRange = UnitSpawnManager.Instance.Units.FindAll(x => x.UnitType == this.state && Vector3.Distance(x.transform.position, playerContainerReference.transform.position) < (8f + increaser));
+        List<NPC> unitsInChainRange = UnitSpawnManager.Instance.Units.FindAll(x => x.UnitType == this.state && Vector3.Distance(x.transform.position, playerContainerReference.transform.position) < (10f + increaser));
 
         List<NPC> nearestUnits = new List<NPC>();
         if (unitsInChainRange.Count > 0)
@@ -141,7 +147,7 @@ public class Player : MonoBehaviour {
             {
                 StartCoroutine(EndedChainStreak(1f));
             }
-            return;
+            yield break;
         }
         PlayerCamera.Instance.IncreaseSize();
 
@@ -152,7 +158,7 @@ public class Player : MonoBehaviour {
             arrow.transform.parent = this.playerContainerReference.transform;
             arrow.transform.localPosition = new Vector3(0, 0, 0);
         }
-	}
+    }
 
     IEnumerator EndedChainStreak(float waitTime = 0f)
     {
@@ -184,7 +190,7 @@ public class Player : MonoBehaviour {
                 return;
             }
             Vector3 direction = currentlyDashingChainedUnit.transform.position - this.playerContainerReference.transform.position;
-            Dash(4f, direction);
+            Dash(3f, direction);
             this.transform.rotation = Quaternion.LookRotation(direction);
             return;
         }
@@ -283,6 +289,7 @@ public class Player : MonoBehaviour {
                         foundHit = true;
                     }
                 }
+                if(foundHit)
                     foreach (DirectionArrow arrow in arrows)
                     {
                         GameObject.Destroy(arrow.gameObject);
