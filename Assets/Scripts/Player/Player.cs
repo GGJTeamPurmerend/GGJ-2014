@@ -315,16 +315,22 @@ public class Player : MonoBehaviour {
         {
             if (!IsDashing())
             {
-                Damage();
-                other.GetComponent<NPC>().Kill();
-                PlayerCamera.Instance.ShakeCamera();
+                if (!isHit)
+                {
+                    Damage();
+                    other.GetComponent<NPC>().Kill();
+                    PlayerCamera.Instance.ShakeCamera();
+                }
             }
             else
             {
-                other.GetComponent<NPC>().Kill();
-                Player.Instance.StartChain();
-                PlayerCamera.Instance.ShakeCamera();
-                //  this.GetComponent<NPC>().
+                if (!isHit)
+                {
+                    other.GetComponent<NPC>().Kill();
+                    Player.Instance.StartChain();
+                    PlayerCamera.Instance.ShakeCamera();
+                    //  this.GetComponent<NPC>().
+                }
             }
         }
 
@@ -332,8 +338,11 @@ public class Player : MonoBehaviour {
         {
             if (chainState == ChainState.Dashing)
             {
-                other.GetComponent<NPC>().Kill();
-                PlayerCamera.Instance.ShakeCamera();
+                if (!isHit)
+                {
+                    other.GetComponent<NPC>().Kill();
+                    PlayerCamera.Instance.ShakeCamera();
+                }
             }
             else if (chainState == ChainState.Pre)
             {
@@ -341,9 +350,12 @@ public class Player : MonoBehaviour {
             }
             else
             {
-                Damage();
-                other.GetComponent<NPC>().Kill();
-                PlayerCamera.Instance.ShakeCamera();
+                if (!isHit)
+                {
+                    Damage();
+                    other.GetComponent<NPC>().Kill();
+                    PlayerCamera.Instance.ShakeCamera();
+                }
             }
         }
     }
@@ -366,9 +378,11 @@ public class Player : MonoBehaviour {
     }
 
     private float newLiveTime = 2;
+    private bool isHit;
 
     IEnumerator restoreLive()
     {
+        isHit = true;
         for (int i = 0; i < 4; i++)
         {
             this.GetComponentInChildren<SpriteRenderer>().enabled = false;
@@ -376,7 +390,7 @@ public class Player : MonoBehaviour {
             this.GetComponentInChildren<SpriteRenderer>().enabled = true;
             yield return new WaitForSeconds(newLiveTime / 8);
         }
-        lives += 1;
+        isHit = false;
     }
 
     public void Kill()
