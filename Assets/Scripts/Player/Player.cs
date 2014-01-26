@@ -392,9 +392,15 @@ public class Player : MonoBehaviour {
         isHit = true;
         for (int i = 0; i < 4; i++)
         {
-            this.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            foreach (SpriteRenderer renderer in this.GetComponentsInChildren<SpriteRenderer>())
+            {
+                renderer.enabled = false;
+            }
             yield return new WaitForSeconds(newLiveTime / 8);
-            this.GetComponentInChildren<SpriteRenderer>().enabled = true;
+            foreach (SpriteRenderer renderer in this.GetComponentsInChildren<SpriteRenderer>())
+            {
+                renderer.enabled = true;
+            }
             yield return new WaitForSeconds(newLiveTime / 8);
         }
         isHit = false;
