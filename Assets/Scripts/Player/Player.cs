@@ -104,7 +104,7 @@ public class Player : MonoBehaviour {
 
 	public void Kill() {
         this.gameObject.GetComponents<AudioSource>()[3].Play();
-		Application.LoadLevel(0);
+		Application.LoadLevel(1);
 	}
     
 	public void StartChain() {
