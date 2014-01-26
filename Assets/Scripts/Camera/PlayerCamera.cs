@@ -30,6 +30,8 @@ public class PlayerCamera : MonoBehaviour {
         pos.z = playerPos.z;
 
         this.transform.position = pos;
+
+        
 	}
 
     void OnUpdate(float value)
@@ -56,7 +58,7 @@ public class PlayerCamera : MonoBehaviour {
 
     public void ResetSize()
     {
-        iTween.ValueTo(this.gameObject, iTween.Hash("from", size, "to", defaultSize, "easetype", "easeOutSine", "time", 0.5f, "onupdate", "OnUpdate"));
+        iTween.ValueTo(this.gameObject, iTween.Hash("from", size, "to", defaultSize, "easetype", "easeOutSine", "time", 0.8f, "onupdate", "OnUpdate"));
         size = defaultSize;
         IsBusy = true;
         StartCoroutine(EnableAgain());
