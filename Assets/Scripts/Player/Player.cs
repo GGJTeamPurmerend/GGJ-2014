@@ -59,7 +59,7 @@ public class Player : MonoBehaviour {
 
 	void Start() {
 		animator = gameObject.GetComponentInChildren<Animator>();
-
+		Time.timeScale = 0.5f;
 		UnitSpawnManager.Instance.UpdatePlayerState(state);
         StartCoroutine(CheckForLeftTrigger());
 	}
@@ -104,6 +104,8 @@ public class Player : MonoBehaviour {
     
 	public void StartChain() {
         StartCoroutine(Chaining());
+
+		gameObject.GetComponentInChildren<Animator>().SetBool("stoppedChaining", false);
 	}
 
     IEnumerator Chaining()
@@ -111,6 +113,7 @@ public class Player : MonoBehaviour {
        // yield return new WaitForSeconds(0.1f);
         chainState = ChainState.Pre;
         chainCount++;
+
         float increaser = chainCount * 0.6f;
 
 		int audioCounter = (int)chainCount % 5 + 3;
@@ -172,6 +175,7 @@ public class Player : MonoBehaviour {
             yield break;
         }
         Debug.Log("Chain streak: " + chainCount);
+		gameObject.GetComponentInChildren<Animator>().SetBool("stoppedChaining", true);
         chainCount = 0;
         PlayerCamera.Instance.ResetSize();
         chainState = ChainState.None;
@@ -190,6 +194,7 @@ public class Player : MonoBehaviour {
 		float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
 
+		gameObject.GetComponentInChildren<Animator>().SetBool("moving", false);
         GetChainInput();
 
         if (chainState == ChainState.Dashing)
@@ -249,10 +254,6 @@ public class Player : MonoBehaviour {
             playerContainerReference.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + movement, Time.deltaTime * speed);
             this.transform.rotation = Quaternion.LookRotation(movement);
         }
-        else
-        {
-            gameObject.GetComponentInChildren<Animator>().SetBool("moving", false);
-        }
     }
 
     void Dash(float extraPower, Vector3 direction)
@@ -282,6 +283,7 @@ public class Player : MonoBehaviour {
 
             if (pos.magnitude >= 1f)
             {
+				gameObject.GetComponentInChildren<Animator>().SetBool("chaining", true);
                 pos *= 2f;
                 Vector3 newPos = new Vector3();
                 newPos.x = Player.Instance.transform.position.x + pos.x;
@@ -306,7 +308,13 @@ public class Player : MonoBehaviour {
                     }
                 }
             }
+			else {
+				gameObject.GetComponentInChildren<Animator>().SetBool("chaining", false);
+			}
         }
+		else {
+			gameObject.GetComponentInChildren<Animator>().SetBool("chaining", false);
+		}
     }
 
     void ChainToUnit(NPC unit)
