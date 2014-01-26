@@ -59,7 +59,6 @@ public class Player : MonoBehaviour {
 
 	void Start() {
 		animator = gameObject.GetComponentInChildren<Animator>();
-		Time.timeScale = 0.5f;
 		UnitSpawnManager.Instance.UpdatePlayerState(state);
         StartCoroutine(CheckForLeftTrigger());
 	}
