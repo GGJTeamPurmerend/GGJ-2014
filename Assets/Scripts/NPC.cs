@@ -8,6 +8,8 @@ public class NPC : MonoBehaviour {
     public string closest = "";
 
     public Sprite hostile, defaultSprite;
+    public RuntimeAnimatorController red, black;
+    // Sprite hostileBody, defaultBody;
 
     MonoBehaviour realBehaviour;
     Sprite realSprite;
@@ -21,6 +23,7 @@ public class NPC : MonoBehaviour {
         {
             this.Kill();
         }
+
     }
 
     public void Kill()
@@ -51,8 +54,6 @@ public class NPC : MonoBehaviour {
         UnitType = type;
         realBehaviour = null;
         realBehaviour = this.gameObject.AddComponent<HostileBehaviour>();
-        realSprite = hostile;
-        //defaultSprite = this.GetComponentInChildren<SpriteRenderer>().sprite;
 
         realBehaviour.enabled = false;
         if (Player.Instance.state == UnitType)
@@ -69,11 +70,13 @@ public class NPC : MonoBehaviour {
         this.GetComponent<HostileBehaviour>().enabled = isSpotted;
         if (isSpotted)
         {
-            this.GetComponentInChildren<SpriteRenderer>().sprite = realSprite;
+            transform.FindChild("Sprite").GetComponent<SpriteRenderer>().sprite = hostile;
+            transform.FindChild("Sprite").GetComponent<Animator>().runtimeAnimatorController = red;
         }
         else
         {
-			this.GetComponentInChildren<SpriteRenderer>().sprite = defaultSprite;
+            transform.FindChild("Sprite").GetComponent<SpriteRenderer>().sprite = defaultSprite;
+            transform.FindChild("Sprite").GetComponent<Animator>().runtimeAnimatorController = black;
         }
     }
 
