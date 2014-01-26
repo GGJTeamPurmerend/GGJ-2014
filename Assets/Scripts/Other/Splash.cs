@@ -10,7 +10,7 @@ public class Splash : MonoBehaviour {
 	void Update () {
 		deltaTime += Time.deltaTime;
 		if(deltaTime >= transition) {
-			Application.LoadLevel(1); 
+            Application.LoadLevel("Start");
 		}  
 	}
 }

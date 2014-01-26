@@ -45,9 +45,9 @@ public class PlayerCamera : MonoBehaviour {
     public void IncreaseSize()
     {
         float prevSize = size;
-        size += 1f;
-        if(size >= 16f)
-            size = 14f;
+        size += 0.8f;
+        if(size >= 13f)
+            size = 13f;
         iTween.ValueTo(this.gameObject, iTween.Hash("from", prevSize, "to", size, "easetype", "easeOutElastic", "time", 0.8f, "onupdate", "OnUpdate"));
     }
 
