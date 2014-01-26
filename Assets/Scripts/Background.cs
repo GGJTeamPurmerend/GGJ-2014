@@ -11,6 +11,7 @@ public class Background : MonoBehaviour {
 
 	// Update is called once per frame
 	void FixedUpdate() {
-		renderer.material.mainTextureOffset = new Vector2(Camera.main.transform.position.x / 25, Camera.main.transform.position.z / 25);
+		Background bg = GameObject.FindObjectOfType<Background>();
+		renderer.material.mainTextureOffset = new Vector2(Camera.main.transform.position.x / bg.transform.localScale.x, Camera.main.transform.position.z / bg.transform.localScale.y);
 	}
 }
