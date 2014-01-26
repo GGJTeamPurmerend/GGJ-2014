@@ -112,6 +112,10 @@ public class Player : MonoBehaviour {
         chainState = ChainState.Pre;
         chainCount++;
         float increaser = chainCount * 0.6f;
+
+		int audioCounter = (int)chainCount % 4 + 4;
+		this.gameObject.GetComponents<AudioSource>()[audioCounter].Play();
+
         if (increaser > 6) increaser = 6f;
         List<NPC> unitsInChainRange = UnitSpawnManager.Instance.Units.FindAll(x => x.UnitType == this.state && Vector3.Distance(x.transform.position, playerContainerReference.transform.position) < (10f + increaser));
 
