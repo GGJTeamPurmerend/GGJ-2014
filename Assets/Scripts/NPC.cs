@@ -7,10 +7,8 @@ public class NPC : MonoBehaviour {
     public bool IsSpotted = false;
     public string closest = "";
 
-    public Sprite hostile;
-    Sprite defaultSprite;
+    public Sprite hostile, defaultSprite;
 
-    bool hasBeenSpottedBefore = false;
     MonoBehaviour realBehaviour;
     Sprite realSprite;
 	
@@ -38,7 +36,7 @@ public class NPC : MonoBehaviour {
         realBehaviour = null;
         realBehaviour = this.gameObject.AddComponent<HostileBehaviour>();
         realSprite = hostile;
-        defaultSprite = this.GetComponentInChildren<SpriteRenderer>().sprite;
+        //defaultSprite = this.GetComponentInChildren<SpriteRenderer>().sprite;
 
         realBehaviour.enabled = false;
         if (Player.Instance.state == UnitType)
@@ -71,10 +69,5 @@ public class NPC : MonoBehaviour {
             return;
         }
         this.GetComponent<NeutralBehaviour>().AggroToPlayer(false);
-    }
-
-    public void MakeMaterialVisible()
-    {
-        this.GetComponentInChildren<SpriteRenderer>().sprite = realSprite;
     }
 }

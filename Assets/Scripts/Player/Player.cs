@@ -13,7 +13,7 @@ public enum UnitType {
 
 public enum ChainState
 {
-    None, Pre, Dashing, In
+    None, Pre, Dashing
 }
 
 public class Player : MonoBehaviour {
@@ -43,12 +43,14 @@ public class Player : MonoBehaviour {
 	private bool isDashing = false;
     private bool inCooldown = false;
 
-	private float cooldownPeriod = 1.0f;
-    private float dashPeriod = 0.5f;
+	private float cooldownPeriod = 0.8f;
+    private float dashPeriod = 0.3f;
 
     private int i = 0;
 
     TrailRenderer trailRenderer;
+
+    bool leftPressed = false;
 
 	void Awake() {
 		Instance = this;
@@ -59,14 +61,30 @@ public class Player : MonoBehaviour {
 		animator = gameObject.GetComponentInChildren<Animator>();
 
 		UnitSpawnManager.Instance.UpdatePlayerState(state);
+        StartCoroutine(CheckForLeftTrigger());
 	}
 
-	void Update() {
-		if (Input.GetAxis("L Trigger") == 1){
-			ToggleState();
-			UnitSpawnManager.Instance.UpdatePlayerState(state);
-            this.gameObject.GetComponents<AudioSource>()[2].Play();
-		}
+	IEnumerator CheckForLeftTrigger() {
+        while (true)
+        {
+            if (!leftPressed && Input.GetAxis("L Trigger") == 1)
+            {
+                leftPressed = true;
+                ToggleState();
+                UnitSpawnManager.Instance.UpdatePlayerState(state);
+                this.gameObject.GetComponents<AudioSource>()[2].Play();
+                if (chainState != ChainState.None)
+                {
+                    StartCoroutine(EndedChainStreak());
+                }
+            }
+            else
+            {
+                leftPressed = false;
+            }
+            yield return new WaitForSeconds(0.2f);
+        }
+       
 	}
 
 	void ToggleState() {
@@ -90,10 +108,6 @@ public class Player : MonoBehaviour {
 	}
     
 	public void StartChain() {
-        if (chainState == ChainState.Dashing)
-        {
-            Debug.Log("DOUBLE DASH");
-        }
         chainState = ChainState.Pre;
         chainCount++;
         float increaser = chainCount * 0.6f;
@@ -130,6 +144,7 @@ public class Player : MonoBehaviour {
             return;
         }
         PlayerCamera.Instance.IncreaseSize();
+
         foreach (NPC unit in nearestUnits)
         {
             GameObject arrow = (GameObject)Instantiate(directionArrowPrefab);
@@ -145,6 +160,13 @@ public class Player : MonoBehaviour {
         Debug.Log("Chain streak: " + chainCount);
         chainCount = 0;
         PlayerCamera.Instance.ResetSize();
+        chainState = ChainState.None;
+        DirectionArrow[] arrows = FindObjectsOfType<DirectionArrow>();
+        foreach (DirectionArrow arrow in arrows)
+        {
+            Destroy(arrow.gameObject);
+        }
+
     }
 
 	// Controller
@@ -163,7 +185,7 @@ public class Player : MonoBehaviour {
             }
             Vector3 direction = currentlyDashingChainedUnit.transform.position - this.playerContainerReference.transform.position;
             Dash(4f, direction);
-            this.transform.rotation = Quaternion.LookRotation(currentlyDashingChainedUnit.transform.position);
+            this.transform.rotation = Quaternion.LookRotation(direction);
             return;
         }
 
@@ -182,8 +204,8 @@ public class Player : MonoBehaviour {
             if (cooldownPeriod < 0)
             {
                 inCooldown = false;
-                dashPeriod = 0.5f;
-                cooldownPeriod = 1.0f;
+                dashPeriod = 0.3f;
+                cooldownPeriod = 0.8f;
             }
             if (dashPeriod < 0 && cooldownPeriod > 0)
             {
@@ -251,23 +273,20 @@ public class Player : MonoBehaviour {
                 newPos.z = Player.Instance.transform.position.z + -pos.y;
 
                 DirectionArrow[] arrows = FindObjectsOfType<DirectionArrow>();
-                bool removeArrows = false;
+                bool foundHit = false;
                 foreach (DirectionArrow arrow in arrows)
                 {
-                    if (Vector3.Distance(arrow.transform.GetChild(0).position, newPos) < 1.7f)
+                    if (Vector3.Distance(arrow.transform.GetChild(0).position, newPos) < 2f)
                     {
                         currentlyDashingChainedUnit = arrow.unit;
                         chainState = ChainState.Dashing;
-                        removeArrows = true;
+                        foundHit = true;
                     }
                 }
-                if (removeArrows)
-                {
                     foreach (DirectionArrow arrow in arrows)
                     {
                         GameObject.Destroy(arrow.gameObject);
                     }
-                }
             }
         }
     }
@@ -277,13 +296,51 @@ public class Player : MonoBehaviour {
         
     }
 
-	void OnTriggerEnter(Collider other) {
-		if(isDashing) {
-            this.gameObject.GetComponents<AudioSource>()[1].Play();
-		}
-	}
+    void OnTriggerEnter(Collider other)
+    {
+        this.gameObject.GetComponents<AudioSource>()[1].Play();
+
+        if (other.GetComponent<HostileBehaviour>().enabled)
+        {
+            if (!IsDashing())
+            {
+                Damage();
+            }
+            else
+            {
+                other.GetComponent<NPC>().Kill();
+                Player.Instance.StartChain();
+                PlayerCamera.Instance.ShakeCamera();
+                //  this.GetComponent<NPC>().
+            }
+        }
+
+        if (other.GetComponent<NeutralBehaviour>().enabled)
+        {
+            if (chainState == ChainState.Dashing)
+            {
+                other.GetComponent<NPC>().Kill();
+                PlayerCamera.Instance.ShakeCamera();
+            }
+            else if (chainState == ChainState.Pre)
+            {
+
+            }
+            else
+            {
+                Damage();
+            }
+        }
+    }
 
 	public bool IsDashing() {
 		return isDashing;
 	}
+
+
+    public void Damage()
+    {
+        Kill();
+
+    }
 }
