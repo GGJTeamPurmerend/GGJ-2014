@@ -390,18 +390,18 @@ public class Player : MonoBehaviour {
     IEnumerator restoreLive()
     {
         isHit = true;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 8; i++)
         {
             foreach (SpriteRenderer renderer in this.GetComponentsInChildren<SpriteRenderer>())
             {
                 renderer.enabled = false;
             }
-            yield return new WaitForSeconds(newLiveTime / 8);
+            yield return new WaitForSeconds(newLiveTime / 16);
             foreach (SpriteRenderer renderer in this.GetComponentsInChildren<SpriteRenderer>())
             {
                 renderer.enabled = true;
             }
-            yield return new WaitForSeconds(newLiveTime / 8);
+            yield return new WaitForSeconds(newLiveTime / 16);
         }
         isHit = false;
     }
