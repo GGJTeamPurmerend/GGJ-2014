@@ -11,6 +11,9 @@ public class NPC : MonoBehaviour {
 
     MonoBehaviour realBehaviour;
     Sprite realSprite;
+
+    public GameObject DeadHostileParticleEmitterPrefab;
+    public GameObject DeadParticleEmitterForNeutralPrefab;
 	
 	// Update is called once per frame
 	void Update () {
@@ -22,6 +25,19 @@ public class NPC : MonoBehaviour {
 
     public void Kill()
     {
+        if (this.GetComponent<HostileBehaviour>().enabled)
+        {
+            GameObject obj = (GameObject) Instantiate(DeadHostileParticleEmitterPrefab, this.transform.position, this.transform.rotation);
+            
+        }
+        else if (this.GetComponent<NeutralBehaviour>().enabled)
+        {
+            GameObject obj = (GameObject)Instantiate(DeadParticleEmitterForNeutralPrefab, this.transform.position, this.transform.rotation);
+ 
+        }
+
+
+
         UnitSpawnManager.Instance.RemoveUnit(this);
         GameObject.Destroy(this.gameObject);
     }

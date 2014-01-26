@@ -155,7 +155,6 @@ public class Player : MonoBehaviour {
             yield break;
         }
         trailRenderer.time = 100f;
-        PlayerCamera.Instance.IncreaseSize();
 
         foreach (NPC unit in nearestUnits)
         {
@@ -301,6 +300,8 @@ public class Player : MonoBehaviour {
                 }
                 if (foundHit)
                 {
+
+                    PlayerCamera.Instance.IncreaseSize();
                     foreach (DirectionArrow arrow in arrows)
                     {
                         GameObject.Destroy(arrow.gameObject);
