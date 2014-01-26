@@ -46,7 +46,7 @@ public class Player : MonoBehaviour {
 	private float cooldownPeriod = 0.8f;
     private float dashPeriod = 0.3f;
 
-    private int lives = 3;
+    private int lives = 2;
 
     TrailRenderer trailRenderer;
 
