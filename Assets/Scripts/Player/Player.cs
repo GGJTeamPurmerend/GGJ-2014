@@ -114,6 +114,10 @@ public class Player : MonoBehaviour {
         float increaser = chainCount * 0.6f;
 
 		int audioCounter = (int)chainCount % 4 + 4;
+		if (chainCount >= 4){
+			audioCounter = 8;
+		}
+
 		this.gameObject.GetComponents<AudioSource>()[audioCounter].Play();
 
         if (increaser > 6) increaser = 6f;
