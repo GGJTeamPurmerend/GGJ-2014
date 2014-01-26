@@ -96,7 +96,9 @@ public class Player : MonoBehaviour {
         }
         chainState = ChainState.Pre;
         chainCount++;
-        List<NPC> unitsInChainRange = UnitSpawnManager.Instance.Units.FindAll(x => x.UnitType == this.state && Vector3.Distance(x.transform.position, playerContainerReference.transform.position) < (13f + chainCount));
+        float increaser = chainCount * 0.6f;
+        if (increaser > 6) increaser = 6f;
+        List<NPC> unitsInChainRange = UnitSpawnManager.Instance.Units.FindAll(x => x.UnitType == this.state && Vector3.Distance(x.transform.position, playerContainerReference.transform.position) < (8f + increaser));
 
         List<NPC> nearestUnits = new List<NPC>();
         if (unitsInChainRange.Count > 0)
@@ -123,11 +125,11 @@ public class Player : MonoBehaviour {
         {
             if (chainCount != 0)
             {
-                EndedChainStreak();
+                StartCoroutine(EndedChainStreak(1f));
             }
             return;
         }
-
+        PlayerCamera.Instance.IncreaseSize();
         foreach (NPC unit in nearestUnits)
         {
             GameObject arrow = (GameObject)Instantiate(directionArrowPrefab);
@@ -137,10 +139,12 @@ public class Player : MonoBehaviour {
         }
 	}
 
-    void EndedChainStreak()
+    IEnumerator EndedChainStreak(float waitTime = 0f)
     {
+        yield return new WaitForSeconds(waitTime);
         Debug.Log("Chain streak: " + chainCount);
         chainCount = 0;
+        PlayerCamera.Instance.ResetSize();
     }
 
 	// Controller
@@ -230,7 +234,6 @@ public class Player : MonoBehaviour {
         float lookVertical = Input.GetAxis("RStick Y");
 
         Vector2 pos = new Vector2(lookVertical, lookHorizontal);
-
         if (chainState == ChainState.Pre)
         {
             if (FindObjectsOfType<DirectionArrow>().Length == 0)
