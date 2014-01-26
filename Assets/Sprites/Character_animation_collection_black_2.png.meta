@@ -1,0 +1,1345 @@
+fileFormatVersion: 2
+guid: e57b93fc26003124a85be5b32bdd99c1
+TextureImporter:
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 4096
+  textureSettings:
+    filterMode: -1
+    aniso: 1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings:
+  - buildTarget: iPhone
+    maxTextureSize: 1024
+    textureFormat: -2
+    compressionQuality: 50
+  spriteSheet:
+    sprites:
+    - name: Character_animation_collection_black_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3894
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_1
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 3894
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_2
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 3894
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_3
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 3894
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_4
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 3894
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_5
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 3894
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_6
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 3894
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_7
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 3894
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_8
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 3894
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3692
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_10
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 3692
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_11
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 3692
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_12
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 3692
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_13
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 3692
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_14
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 3692
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_15
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 3692
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_16
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 3692
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_17
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 3692
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_18
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3490
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_19
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 3490
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_20
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 3490
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_21
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 3490
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_22
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 3490
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_23
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 3490
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_24
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 3490
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_25
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 3490
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_26
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 3490
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_27
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3288
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_28
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 3288
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_29
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 3288
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_30
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 3288
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_31
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 3288
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_32
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 3288
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_33
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 3288
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_34
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 3288
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_35
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 3288
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_36
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3086
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_37
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 3086
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_38
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 3086
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_39
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 3086
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_40
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 3086
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_41
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 3086
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_42
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 3086
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_43
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 3086
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_44
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 3086
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_45
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2884
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_46
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 2884
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_47
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 2884
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_48
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 2884
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_49
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 2884
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_50
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 2884
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_51
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 2884
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_52
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 2884
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_53
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 2884
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_54
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2682
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_55
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 2682
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_56
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 2682
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_57
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 2682
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_58
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 2682
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_59
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 2682
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_60
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 2682
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_61
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 2682
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_62
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 2682
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2480
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_64
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 2480
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_65
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 2480
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_66
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 2480
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_67
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 2480
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_68
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 2480
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_69
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 2480
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_70
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 2480
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_71
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 2480
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_72
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2278
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_73
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 2278
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_74
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 2278
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_75
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 2278
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_76
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 2278
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_77
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 2278
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_78
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 2278
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_79
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 2278
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_80
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 2278
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_81
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2076
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_82
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 2076
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_83
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 2076
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_84
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 2076
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_85
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 2076
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_86
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 2076
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_87
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 2076
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_88
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 2076
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_89
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 2076
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_90
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1874
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_91
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 1874
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_92
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 1874
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_93
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 1874
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_94
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 1874
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_95
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 1874
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_96
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 1874
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_97
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 1874
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_98
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 1874
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_99
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1672
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_100
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 1672
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_101
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 1672
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_102
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 1672
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_103
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 1672
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_104
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 1672
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_105
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 1672
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_106
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 1672
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_107
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 1672
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_108
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1470
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_109
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 1470
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_110
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 1470
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_111
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 1470
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_112
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 1470
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_113
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 1470
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_114
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 1470
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_115
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 1470
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_116
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 1470
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_117
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1268
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_118
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 1268
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_119
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 1268
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_120
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 1268
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_121
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 1268
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_122
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 1268
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_123
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 1268
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_124
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 1268
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_125
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 1268
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_126
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1066
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_127
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 1066
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_128
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 1066
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_129
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 1066
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_130
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 1066
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_131
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 1066
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_132
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 1066
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_133
+      rect:
+        serializedVersion: 2
+        x: 1554
+        y: 1066
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_134
+      rect:
+        serializedVersion: 2
+        x: 1776
+        y: 1066
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_135
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 864
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_136
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 864
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_137
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 864
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_138
+      rect:
+        serializedVersion: 2
+        x: 666
+        y: 864
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_139
+      rect:
+        serializedVersion: 2
+        x: 888
+        y: 864
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_140
+      rect:
+        serializedVersion: 2
+        x: 1110
+        y: 864
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_141
+      rect:
+        serializedVersion: 2
+        x: 1332
+        y: 864
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_142
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 662
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: Character_animation_collection_black_2_143
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 662
+        width: 222
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+  spritePackingTag: 
+  userData: 
