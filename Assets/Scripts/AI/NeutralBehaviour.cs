@@ -33,8 +33,8 @@ public class NeutralBehaviour : MonoBehaviour {
 
 		float speed = TweakableValues.NeutralNPCSpeed;
 		if(target != null) {
+			gameObject.GetComponentInChildren<Animator>().SetBool("moving", true);
 			Vector3 eulerAngles = transform.eulerAngles;
-			//transform.LookAt(this.transform.position + direction.normalized);
 			transform.LookAt(target.position);
 			transform.eulerAngles = Vector3.Slerp(eulerAngles, transform.eulerAngles, Time.deltaTime * 1);
 
@@ -43,21 +43,26 @@ public class NeutralBehaviour : MonoBehaviour {
 					target = null;
 				}
 				else {
+					gameObject.GetComponentInChildren<Animator>().SetBool("dashing", true);
 					Vector3 dashDirection = Vector3.zero;
 					dashDirection = this.transform.rotation * Vector3.forward;
 					dashDirection.Normalize();
 					this.transform.position = Vector3.MoveTowards(this.transform.position, this.transform.position + dashDirection, Time.deltaTime * enemyDashSpeed);
 				}
 			}
+			else {
+				gameObject.GetComponentInChildren<Animator>().SetBool("dashing", false);
+			}
 			speed *= 1.5f;
 		}
 		else {
+			gameObject.GetComponentInChildren<Animator>().SetBool("moving", false);
 			transform.eulerAngles = Vector3.Slerp(transform.eulerAngles, targetRotation, Time.deltaTime * directionChangeInterval);
 		}
 
 		var forward = transform.TransformDirection(Vector3.forward);
 
-		this.rigidbody.velocity = forward/*.normalized * TweakableValues.targetWeight + separationPosition.normalized * TweakableValues.separationWeight*/ * speed;
+		this.rigidbody.velocity = forward * speed;
 	}
 
 	/// <summary>
