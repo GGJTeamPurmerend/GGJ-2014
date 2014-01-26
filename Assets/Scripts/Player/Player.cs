@@ -46,7 +46,7 @@ public class Player : MonoBehaviour {
 	private float cooldownPeriod = 0.8f;
     private float dashPeriod = 0.3f;
 
-    private int i = 0;
+    private int lives = 3;
 
     TrailRenderer trailRenderer;
 
@@ -100,11 +100,6 @@ public class Player : MonoBehaviour {
 
 	public UnitType getState() {
 		return state;
-	}
-
-	public void Kill() {
-        this.gameObject.GetComponents<AudioSource>()[3].Play();
-		Application.LoadLevel(1);
 	}
     
 	public void StartChain() {
@@ -178,6 +173,7 @@ public class Player : MonoBehaviour {
 	// Controller
 
 	void FixedUpdate() {
+
 		float moveHorizontal = Input.GetAxis("Horizontal");
 		float moveVertical = Input.GetAxis("Vertical");
 
@@ -312,6 +308,8 @@ public class Player : MonoBehaviour {
             if (!IsDashing())
             {
                 Damage();
+                other.GetComponent<NPC>().Kill();
+                PlayerCamera.Instance.ShakeCamera();
             }
             else
             {
@@ -336,6 +334,8 @@ public class Player : MonoBehaviour {
             else
             {
                 Damage();
+                other.GetComponent<NPC>().Kill();
+                PlayerCamera.Instance.ShakeCamera();
             }
         }
     }
@@ -344,10 +344,36 @@ public class Player : MonoBehaviour {
 		return isDashing;
 	}
 
-
     public void Damage()
     {
-        Kill();
+        lives -= 1;
+        if (lives <= 0)
+        {
+            Kill();
+        }
+        else
+        {
+            StartCoroutine(restoreLive());
+        }
+    }
 
+    private float newLiveTime = 2;
+
+    IEnumerator restoreLive()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            this.GetComponentInChildren<SpriteRenderer>().enabled = false;
+            yield return new WaitForSeconds(newLiveTime / 8);
+            this.GetComponentInChildren<SpriteRenderer>().enabled = true;
+            yield return new WaitForSeconds(newLiveTime / 8);
+        }
+        lives += 1;
+    }
+
+    public void Kill()
+    {
+        this.gameObject.GetComponents<AudioSource>()[3].Play();
+        Application.LoadLevel(1);
     }
 }
