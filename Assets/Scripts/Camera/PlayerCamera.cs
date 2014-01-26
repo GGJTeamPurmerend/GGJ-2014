@@ -37,6 +37,8 @@ public class PlayerCamera : MonoBehaviour {
         Camera.main.orthographicSize = value;
     }
 
+    bool IsBusy = false;
+
     public void ShakeCamera()
     {
         iTween.ShakePosition(CameraHolder, new Vector3(0.5f, 0.5f, 0.5f), 0.2f);
@@ -44,10 +46,11 @@ public class PlayerCamera : MonoBehaviour {
 
     public void IncreaseSize()
     {
+        if (IsBusy) return;
         float prevSize = size;
-        size += 0.8f;
-        if(size >= 13f)
-            size = 13f;
+        size += 0.9f;
+        if(size >= 9f)
+            size = 9f;
         iTween.ValueTo(this.gameObject, iTween.Hash("from", prevSize, "to", size, "easetype", "easeOutElastic", "time", 0.8f, "onupdate", "OnUpdate"));
     }
 
@@ -55,6 +58,14 @@ public class PlayerCamera : MonoBehaviour {
     {
         iTween.ValueTo(this.gameObject, iTween.Hash("from", size, "to", defaultSize, "easetype", "easeOutSine", "time", 0.5f, "onupdate", "OnUpdate"));
         size = defaultSize;
+        IsBusy = true;
+        StartCoroutine(EnableAgain());
+    }
+
+    IEnumerator EnableAgain()
+    {
+        yield return new WaitForSeconds(0.5f);
+        IsBusy = false;
     }
 
 }

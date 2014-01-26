@@ -121,7 +121,7 @@ public class Player : MonoBehaviour {
 		this.gameObject.GetComponents<AudioSource>()[audioCounter].Play();
 
         if (increaser > 6) increaser = 6f;
-        List<NPC> unitsInChainRange = UnitSpawnManager.Instance.Units.FindAll(x => x.UnitType == this.state && Vector3.Distance(x.transform.position, playerContainerReference.transform.position) < (10f + increaser));
+        List<NPC> unitsInChainRange = UnitSpawnManager.Instance.Units.FindAll(x => x.UnitType == this.state && Vector3.Distance(x.transform.position, playerContainerReference.transform.position) < (7f + increaser));
 
         List<NPC> nearestUnits = new List<NPC>();
         if (unitsInChainRange.Count > 0)
@@ -152,6 +152,7 @@ public class Player : MonoBehaviour {
             }
             yield break;
         }
+        trailRenderer.time = 100f;
         PlayerCamera.Instance.IncreaseSize();
 
         foreach (NPC unit in nearestUnits)
@@ -166,6 +167,10 @@ public class Player : MonoBehaviour {
     IEnumerator EndedChainStreak(float waitTime = 0f)
     {
         yield return new WaitForSeconds(waitTime);
+        if (chainCount == 0)
+        {
+            yield break;
+        }
         Debug.Log("Chain streak: " + chainCount);
         chainCount = 0;
         PlayerCamera.Instance.ResetSize();
@@ -175,7 +180,7 @@ public class Player : MonoBehaviour {
         {
             Destroy(arrow.gameObject);
         }
-
+        trailRenderer.time = -1f;
     }
 
 	// Controller
@@ -271,7 +276,7 @@ public class Player : MonoBehaviour {
             if (FindObjectsOfType<DirectionArrow>().Length == 0)
             {
                 chainState = ChainState.None;
-                EndedChainStreak();
+                StartCoroutine(EndedChainStreak());
                 return;
             }
 
@@ -293,11 +298,13 @@ public class Player : MonoBehaviour {
                         foundHit = true;
                     }
                 }
-                if(foundHit)
+                if (foundHit)
+                {
                     foreach (DirectionArrow arrow in arrows)
                     {
                         GameObject.Destroy(arrow.gameObject);
                     }
+                }
             }
         }
     }
@@ -396,6 +403,6 @@ public class Player : MonoBehaviour {
     public void Kill()
     {
         this.gameObject.GetComponents<AudioSource>()[3].Play();
-        Application.LoadLevel(1);
+        Application.LoadLevel("Restart");
     }
 }
